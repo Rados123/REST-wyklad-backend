@@ -12,6 +12,8 @@ using REST_wyklad.Models;
 namespace REST_wyklad.Controllers
 {
     [Route("api/[controller]")]
+    [Route("/[action]")]
+    [Route("/Index")]
     [ApiController]
     public class StudentsController : ControllerBase
     {
@@ -51,7 +53,7 @@ namespace REST_wyklad.Controllers
         }
 
         // GET: api/Students/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<StudentModel>> GetStudentModel([FromRoute]int id)
         {
             try
@@ -85,7 +87,7 @@ namespace REST_wyklad.Controllers
 
         // PUT: api/Students/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> PutStudentModel(int id, [FromForm]StudentModel studentModel)
         {
             try
@@ -151,7 +153,7 @@ namespace REST_wyklad.Controllers
         }
 
         // DELETE: api/Students/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteStudentModel(int id)
         {
             try
@@ -172,7 +174,6 @@ namespace REST_wyklad.Controllers
                 return StatusCode(500, $"Internal server error: {ex}");
             }
         }
-
         private bool StudentModelExists(int id)
         {
             return _context.Students.Any(e => e.StudentID == id);

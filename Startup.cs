@@ -69,6 +69,7 @@ namespace REST_wyklad
             {
                 endpoints.MapControllers();
             });
+            
         }
     }
 }
